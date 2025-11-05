@@ -1,4 +1,4 @@
-# 🤓 StudentCRUDBackend
+# StudentCRUDBackend
 
 A simple **Spring Boot + MySQL** RESTful backend for managing students, featuring full CRUD operations, search functionality, and centralized exception handling.
 
