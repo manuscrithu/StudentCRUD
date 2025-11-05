@@ -1,0 +1,37 @@
+version: '3.9'
+
+services:
+  mysql:
+    image: mysql:8.0
+    container_name: mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: school
+      MYSQL_USER: bhanuka
+      MYSQL_PASSWORD: mysql
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+    networks:
+      - student-net
+
+  backend:
+    build: .
+    container_name: student-crud-backend
+    ports:
+      - "8080:8080"
+    depends_on:
+      - mysql
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/school
+      SPRING_DATASOURCE_USERNAME: bhanuka
+      SPRING_DATASOURCE_PASSWORD: mysql
+    networks:
+      - student-net
+
+networks:
+  student-net:
+
+volumes:
+  mysql_data:
